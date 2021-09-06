@@ -1,0 +1,20 @@
+Reference:
+https://www.youtube.com/watch?v=qkTtmgCjHhM
+
+Need to know how to:
+1. Make circles, squares on screen
+2. To run code on each frame (for animation)
+3. Do "collision check". When squares/etc move, to trigger an event (such as low health, or game over)
+
+
+
+
+
+
+
+
+
+
+
+
+
