@@ -36,16 +36,35 @@ class Cactus {
         ctx.fillRect(this.x, this.y, this.width, this.height)
     }
 }
-let cactus = new Cactus()
-cactus.draw()
+// let cactus = new Cactus()
+// cactus.draw()
+
+
+
+let timer = 0
+let cactusArr = []
 
 // to animate, need to do x++ 60 times a second.
 // using requestAnimationFrame, but if going to do gaming script seriously, just use a JS library
 function funcForEachFrame() {
     requestAnimationFrame(funcForEachFrame)
+    timer++
     // whatever write below, will happen 60 times a second
-    dino.x++
-    dino.draw()
 
+    ctx.clearRect(0, 0, canvas.width, canvas.height) // removing canvas and recreating every time
+    // dino.x++ // but this will leave an afterimage so will look like it is increasing. thus we wrote above line
+
+    if (timer % 120 === 0) { // every 120 frames (depending on hardware, monitor) draw a cactus
+        var cactus = new Cactus()
+        cactusArr.push(cactus) // every 120 frames put a cactus into the array
+    }
+
+    cactusArr.forEach((a)=>{
+        a.x--
+        a.draw()
+    })
+    
+    dino.draw()
 }
+
 funcForEachFrame()
