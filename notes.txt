@@ -6,9 +6,8 @@ Need to know how to:
 2. To run code on each frame (for animation)
 3. Do "collision check". When squares/etc move, to trigger an event (such as low health, or game over)
 
-
-
-
+Reference 2:
+https://www.youtube.com/watch?v=7TXGvVblfLs
 
 
 

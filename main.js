@@ -43,7 +43,7 @@ class Cactus {
 
 let timer = 0
 let cactusArr = []
-
+let jumpTimer = 0
 // to animate, need to do x++ 60 times a second.
 // using requestAnimationFrame, but if going to do gaming script seriously, just use a JS library
 function funcForEachFrame() {
@@ -59,12 +59,41 @@ function funcForEachFrame() {
         cactusArr.push(cactus) // every 120 frames put a cactus into the array
     }
 
-    cactusArr.forEach((a)=>{
-        a.x--
+    cactusArr.forEach((a, i, o) => {
+        // if x coordinate is lower than 0, remove from array
+        if (a.x < 0) {
+            o.splice(i, 1)
+        }
+        
+        // a.x--
         a.draw()
+
+        // for jumping, only when space bar is triggered
+        if (jumping == true) {
+            dino.y -= 1
+            jumpTimer++
+        }
+        if (jumping == false) {
+            if (dino.y < 100) {
+                dino.y++
+            }
+        }
+        // stop jumping after reaching 100 frames
+        if (jumpTimer > 100) {
+            jumping = false
+            jumpTimer = 0 // enables to use Space again
+        }
     })
-    
+
     dino.draw()
 }
 
 funcForEachFrame()
+
+// to make space bar equals jump in above funcForEachFrame
+let jumping = false
+document.addEventListener('keydown', function (e) {
+    if (e.code === 'Space') {
+        jumping = true
+    }
+})
