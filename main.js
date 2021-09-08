@@ -44,10 +44,11 @@ class Cactus {
 let timer = 0
 let cactusArr = []
 let jumpTimer = 0
+let animation
 // to animate, need to do x++ 60 times a second.
 // using requestAnimationFrame, but if going to do gaming script seriously, just use a JS library
 function funcForEachFrame() {
-    requestAnimationFrame(funcForEachFrame)
+    animation = requestAnimationFrame(funcForEachFrame)
     timer++
     // whatever write below, will happen 60 times a second
 
@@ -64,8 +65,11 @@ function funcForEachFrame() {
         if (a.x < 0) {
             o.splice(i, 1)
         }
-        
-        // a.x--
+        a.x--
+
+        // keep on collision checking
+        isCollision(dino, a);
+
         a.draw()
 
         // for jumping, only when space bar is triggered
@@ -89,6 +93,17 @@ function funcForEachFrame() {
 }
 
 funcForEachFrame()
+
+// collision checking
+function isCollision(dino, cactus) {
+    let xDiff = cactus.x - (dino.x + dino.width)
+    let yDiff = cactus.y - (dino.y + dino.height)
+    if (xDiff < 0 && yDiff < 0) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        cancelAnimationFrame(animation)
+    }
+}
+
 
 // to make space bar equals jump in above funcForEachFrame
 let jumping = false
