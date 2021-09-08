@@ -10,6 +10,12 @@ canvas.heigh = window.innerHeight - 100
 // ctx.fillRect(10,10, 100,100) // sizing
 
 // main character's elements as object
+
+let dinoImg = new Image()
+dinoImage.src = 'dino.png'
+let cactusImg = new Image()
+cactusImg.src = 'cactus.png'
+
 let dino = {
     // dino coordinates
     x: 10,
@@ -19,8 +25,12 @@ let dino = {
     draw() {
         ctx.fillStyle = 'green'
         ctx.fillRect(this.x, this.y, this.width, this.height)
+        // if want to change to image, prepare a .png image inside folder
+        // ctx.drawImage(dinoImg, this.x, this.y)
     }
 }
+
+
 // dino.draw()
 
 // obstacles. Normally use class, as you need many
@@ -34,6 +44,7 @@ class Cactus {
     draw() {
         ctx.fillStyle = 'red'
         ctx.fillRect(this.x, this.y, this.width, this.height)
+        // ctx.cactusImg(dinoImg, this.x, this.y)
     }
 }
 // let cactus = new Cactus()
